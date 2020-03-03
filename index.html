@@ -37,15 +37,25 @@ animate=ani.FuncAnimation(fig=f,func=fun,interval=60,frames=100)</b>
 
   上面的程式碼呈現的是一個藍點由(0,0)的位置跑到(100,100)的動畫，我們主要使用animation裡頭的FuncAnimation函式來製作我們的動畫，
 在這個函式裡，我們需要先備有一張確立好的圖、一個用來跌代的函式、跌代的次數，以及每次跌代之間所要的間隔時間，
-分別對應了範例程式碼最後一行的fig(圖),func(跌代之函式),interval(時間間隔，以ms為單位),frames(需跌代次數，或理解為張數)。
+分別對應了範例程式碼最後一行的<mark>fig(圖),func(跌代之函式),interval(時間間隔，以ms為單位),frames(需跌代次數，或理解為張數)</mark>。
 以上是要使用FuncAnimation所需要的輸入，其他還有別的輸入參數，大家可以自己去網路查詢。
 
   為了要滿足這些輸入條件，我們一開始先確立了一張底色為白色的底圖"f"，之後把我們要畫的藍色點點的x,y軌跡的list建出來。
 完成以上步驟後，就可到了動畫的核心部分，也就是跌代的函式。範例中所使用的函式"fun(fram)"，我們每次會先使用"clf"將整張圖清空；
 接著為了確立我們的每張圖會有相同的x,y邊界，可以用"xlim"與"ylim"確立好邊界；最後我們就將點的第fram個x,y位置畫在圖上。
 
-  由以上概念，我們的函式會在一次次的跌代中重複清空，打點兩個動作，而fram會一路由<b>0</b>被跌帶到我們指定的<b>frames-1</b>。
+  由以上概念，我們的函式會在一次次的跌代中重複清空，打點兩個動作，而fram會一路由<mark>0</mark>被跌帶到我們指定的<mark>frames-1</mark>。
 這樣我們就可以看到一個完成的動畫了!!
 </pre>
+
+<h2>在Spyder上執行動畫的設定</h2>
+<pre>  在Spyder中，你可能無法順利執行動畫，因此我們需要先做一些設定。以下我們以Spyder4.1做示範:</pre>
+<ol>
+  <li><pre>點選工具列板手圖樣</pre><img  src="wrench.png" width="1150" height="600"></li>
+  <li><pre>在跳出的小視窗中找到"IPython console => Graphics => Graphics backend"處的 Backend下拉式選單
+  選擇<mark>Automatic</mark>，之後按OK</pre><img  src="Automatic.png" width="950" height="600"></li>
+  <li><pre>最後設定完成後，需要在重啟comsole。在console視窗之上排按右建，選擇 "Restart kernal"，之後選 "Yes"，再來你就可以順利執行動畫了~~</pre><img  src="Automatic.png" width="1150" height="600"></li>
+</ol>
+<mark>提醒大家，若想調整回原本的設定，只要把剛剛調掉的 "Automatic" 調成 "Inline"，就回到原始設定了。
   </body>
 </html>
