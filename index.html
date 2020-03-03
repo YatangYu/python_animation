@@ -3,14 +3,49 @@
   <head>
     <meta charset="utf-8">
 	<link rel="stylesheet" href="style.css">
-    <title>Python</title>
+    <title>簡易2D動畫</title>
   </head>
   <body>
-<h1>Python</h1>
-<ol>
-  <li><a href="https://yatangyu.github.io/python-base-skill-i/">Python Base Skill (I)<a/></li>
-  <li><a href="https://yatangyu.github.io/python-base-skill-i/">Python Base Skill (II)<a/></li>
-  <li><a href="https://yatangyu.github.io/python-base-skill-i/">Some modulous (I)<a/></li>
-<ol>
+<h1>簡易2D動畫</h1>
+<pre>  matplotlib模組裡，有許多繪圖相關的工具，更包含了動畫的部分，
+與動畫相關的函式收錄在matplotlib.animation中。
+本次介紹簡易動畫得製作需要使用到裡頭的FunctionAnimation函式</pre>
+
+<h2>動畫的原理</h2>
+<pre>  動畫基本上就是由一張張圖連環呈現所得到的視覺效果，如果大家小時候有玩過翻頁動畫的話，應該有這個概念。
+而要利用程式製作出動畫也是相同的原理，不過會稍微有一些變化。
+  在大多數的程式語言中，繪製動畫的方法會是在同一張底圖上擦擦寫寫。大家可以想想，當我們叫出一張空白的底圖，在上面畫好圖形後呈現出來，
+接著全部擦掉，畫出下一個圖形；就這樣持續下去，如果繪圖的速度夠快，我們是不是就能看到一個連續的動畫了呢?
+</pre>
+
+<h2>利用FunctionAnimation函式呈現動畫</h2>
+<pre>  下面要告訴大家如何在python中實作動畫，以下先給大家範例程式碼:
+<b>from matplotlib import pyplot as plt, animation as ani
+
+f=plt.figure(facecolor='white')
+xx=[i for i in range(100)]
+yy=[xx[i] for i in range(100)]
+
+def fun(fram):
+    plt.clf()
+    plt.xlim(0,100)
+    plt.ylim(0,100)
+    plt.scatter(xx[fram],yy[fram],c='b')
+
+animate=ani.FuncAnimation(fig=f,func=fun,interval=60,frames=100)</b>
+
+
+  上面的程式碼呈現的是一個藍點由(0,0)的位置跑到(100,100)的動畫，我們主要使用animation裡頭的FuncAnimation函式來製作我們的動畫，
+在這個函式裡，我們需要先備有一張確立好的圖、一個用來跌代的函式、跌代的次數，以及每次跌代之間所要的間隔時間，
+分別對應了範例程式碼最後一行的fig(圖),func(跌代之函式),interval(時間間隔，以ms為單位),frames(需跌代次數，或理解為張數)。
+以上是要使用FuncAnimation所需要的輸入，其他還有別的輸入參數，大家可以自己去網路查詢。
+
+  為了要滿足這些輸入條件，我們一開始先確立了一張底色為白色的底圖"f"，之後把我們要畫的藍色點點的x,y軌跡的list建出來。
+完成以上步驟後，就可到了動畫的核心部分，也就是跌代的函式。範例中所使用的函式"fun(fram)"，我們每次會先使用"clf"將整張圖清空；
+接著為了確立我們的每張圖會有相同的x,y邊界，可以用"xlim"與"ylim"確立好邊界；最後我們就將點的第fram個x,y位置畫在圖上。
+
+  由以上概念，我們的函式會在一次次的跌代中重複清空，打點兩個動作，而fram會一路由<b>0</b>被跌帶到我們指定的<b>frames-1</b>。
+這樣我們就可以看到一個完成的動畫了!!
+</pre>
   </body>
 </html>
